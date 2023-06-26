@@ -1,5 +1,5 @@
 import { IsString, IsNotEmpty, IsInt, Min, Max } from 'class-validator'
-export class CreatePersonDto {
+export class CreateDriverDto {
     @IsNotEmpty()
     @IsString()
     firstName: string
@@ -7,6 +7,10 @@ export class CreatePersonDto {
     @IsNotEmpty()
     @IsString()
     lastName: string
+
+    @IsNotEmpty()
+    @IsString()
+    country: string
 
     @IsNotEmpty()
     @IsInt()

@@ -2,9 +2,9 @@ import { Car } from "src/car/entity/car.entity";
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm"
 
 @Entity()
-export class Person {
-    @PrimaryGeneratedColumn()
-    id: number;
+export class Driver {
+    @PrimaryGeneratedColumn("uuid")
+    id: string;
 
     @Column()
     firstName: string;
@@ -15,7 +15,10 @@ export class Person {
     @Column()
     age: number;
 
-    @OneToMany(() => Car, car => car.person, {
+    @Column()
+    country: string;
+
+    @OneToMany(() => Car, car => car.driver, {
       eager: true})
     cars: Car[];
 

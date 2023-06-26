@@ -1,24 +1,30 @@
-import { Person } from "src/person/entity/person.entity";
+import { Driver } from "src/driver/entity/driver.entity";
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm"
 
 @Entity()
 export class Car {
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn("uuid")
+    id: string;
 
     @Column()
     model: string;
 
     @Column()
-    make: string;
+    engine: string;
 
     @Column({nullable: true})
-    year: number;
+    yearActiveStart: number;
 
     @Column({nullable: true})
-    color: string;
+    yearActiveEnd: number;
 
-    @ManyToOne(() => Person, person => person.cars)
-    @JoinColumn({name: "personId"})
-    person: Person;
+    @Column({nullable: true})
+    torque: number;
+
+    @Column({nullable: true})
+    hp: number;
+
+    @ManyToOne(() => Driver, driver => driver.cars)
+    @JoinColumn({name: "driverId"})
+    driver: Driver;
 }

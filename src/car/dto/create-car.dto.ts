@@ -1,5 +1,5 @@
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator'
-import { Person } from 'src/person/entity/person.entity'
+import { IsString, IsNotEmpty, IsNumber, IsOptional } from 'class-validator'
+import { Driver } from 'src/driver/entity/driver.entity'
 export class CreateCarDto {
     @IsNotEmpty()
     @IsString()
@@ -7,13 +7,25 @@ export class CreateCarDto {
 
     @IsNotEmpty()
     @IsString()
-    make: string
-
-    @IsNotEmpty()
-    @IsString()
-    color: string
+    engine: string
 
     @IsNotEmpty()
     @IsNumber()
-    personId: Person
+    driverId: Driver
+
+    @IsOptional()
+    @IsString()
+    yearActiveStart: number | null
+
+    @IsOptional()
+    @IsString()
+    yearActiveEnds: number | null
+
+    @IsOptional()
+    @IsString()
+    torque: number | null
+
+    @IsOptional()
+    @IsString()
+    hp: number | null
 }
