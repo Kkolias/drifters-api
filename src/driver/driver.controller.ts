@@ -11,7 +11,7 @@ export class DriverController {
 
   @Get('get-all')
   async getAllPeople(): Promise<Driver[]> {
-    return this.driverService.getAllPeople();
+    return this.driverService.getAll();
   }
  
   @Get('get-by-id')

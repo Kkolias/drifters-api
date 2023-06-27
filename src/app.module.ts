@@ -8,6 +8,7 @@ import { DriverModule } from './driver/driver.module';
 import { CarModule } from './car/car.module';
 import { TrackModule } from './track/track.module';
 import { RaceEventModule } from './race-event/race-event.module';
+import { ChampionshipModule } from './championship/championship.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { RaceEventModule } from './race-event/race-event.module';
     DriverModule,
     CarModule,
     TrackModule,
-    RaceEventModule
+    RaceEventModule,
+    ChampionshipModule
   ],
   controllers: [AppController],
   providers: [AppService],

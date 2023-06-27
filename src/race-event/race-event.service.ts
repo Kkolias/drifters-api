@@ -6,6 +6,7 @@ import { IRaceEvent } from '../interfaces/race-event';
 import { CreateRaceEventDto } from './dto/create-race-event.dto';
 import { UpdateRaceEventDto } from './dto/update-race-event.dto';
 import { TrackService } from '../track/track.service';
+import { ChampionshipService } from '../championship/championship.service';
 
 @Injectable()
 export class RaceEventService {
@@ -13,6 +14,7 @@ export class RaceEventService {
     @InjectRepository(RaceEvent)
     private raceEventRepository: Repository<RaceEvent>,
     private readonly trackService: TrackService,
+    private readonly championShipService: ChampionshipService
   ) {}
 
   async getAllRaceEvents(): Promise<IRaceEvent[]> {
@@ -34,9 +36,12 @@ export class RaceEventService {
   async createRaceEvent(
     createRaceEventDto: CreateRaceEventDto,
   ): Promise<IRaceEvent> {
-    const { trackId, ...payload } = createRaceEventDto;
+    const { trackId, championshipId, ...payload } = createRaceEventDto;
+
     const track = await this.trackService.getTrackById(trackId);
-    const raceEvent = this.raceEventRepository.create({ ...payload, track });
+    const championship = await this.championShipService.getChampionshipById(championshipId)
+
+    const raceEvent = this.raceEventRepository.create({ ...payload, track, championship });
 
     const { id } = await this.raceEventRepository.save(raceEvent);
     return await this.getRaceEventById(id);
@@ -45,10 +50,12 @@ export class RaceEventService {
   async updateRaceEvent(
     updateRaceEventDto: UpdateRaceEventDto,
   ): Promise<RaceEvent> {
-    const { id, trackId, ...rest } = updateRaceEventDto;
+    const { id, trackId, championshipId, ...rest } = updateRaceEventDto;
 
     const track = await this.trackService.getTrackById(trackId);
-    await this.raceEventRepository.update(id, { ...rest, track });
+    const championship = await this.championShipService.getChampionshipById(championshipId)
+
+    await this.raceEventRepository.update(id, { ...rest, track, championship });
 
     const person = await this.raceEventRepository.findOne({
       where: { id },

@@ -13,7 +13,7 @@ export class DriverService {
     private driverRepository: Repository<Driver>,
   ) {}
 
-  async getAllPeople(): Promise<Driver[]> {
+  async getAll(): Promise<Driver[]> {
     return this.driverRepository.find();
   }
 

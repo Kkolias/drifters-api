@@ -1,3 +1,4 @@
+import { IChampionship } from "./championship"
 import { ITrack } from "./track"
 
 export interface IRaceEvent {
@@ -6,5 +7,5 @@ export interface IRaceEvent {
     startsAt: Date
     endsAt: Date
     track: ITrack
-    
+    championship: IChampionship
 }

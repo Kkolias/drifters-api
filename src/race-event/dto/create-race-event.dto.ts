@@ -15,4 +15,8 @@ export class CreateRaceEventDto {
     @IsNotEmpty()
     @IsUUID()
     trackId: string
+
+    @IsNotEmpty()
+    @IsUUID()
+    championshipId: string
 }

@@ -18,4 +18,8 @@ export class UpdateRaceEventDto {
     @IsOptional()
     @IsUUID()
     trackId: string
+
+    @IsOptional()
+    @IsUUID()
+    championshipId: string
 }
