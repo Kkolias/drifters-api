@@ -5,12 +5,14 @@ import { CreateCarDto } from './dto/create-car.dto';
 import { UpdateCarDto } from './dto/update-car.dto';
 import { Car } from './entity/car.entity';
 import { ICar } from '../interfaces/car';
+import { DriverService } from 'src/driver/driver.service';
 
 @Injectable()
 export class CarService {
   constructor(
     @InjectRepository(Car)
     private carRepository: Repository<Car>,
+    private driverService: DriverService,
   ) {}
 
   async getAllCars(): Promise<Car[]> {
@@ -35,8 +37,11 @@ export class CarService {
   }
 
   async updateCar(updateCarDto: UpdateCarDto): Promise<Car> {
-    const { id, ...rest } = updateCarDto;
-    await this.carRepository.update(id, rest);
+    const { id, driverId, ...rest } = updateCarDto;
+
+    const driver = await this.driverService.getDriverById(driverId);
+    await this.carRepository.update(id, { ...rest, driver });
+
     const person = await this.carRepository.findOneBy({ id });
     if (person) {
       return person;

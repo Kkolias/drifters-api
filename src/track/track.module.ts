@@ -10,5 +10,6 @@ import { Track } from './entity/track.entity';
   ],
   controllers: [TrackController],
   providers: [TrackService],
+  exports: [TrackService],
 })
 export class TrackModule {}

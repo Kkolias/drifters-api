@@ -24,7 +24,7 @@ export class Car {
     @Column({nullable: true})
     hp: number;
 
-    @ManyToOne(() => Driver, driver => driver.cars)
+    @ManyToOne(() => Driver, driver => driver.cars, { cascade: true, onDelete: "CASCADE" })
     @JoinColumn({name: "driverId"})
     driver: Driver;
 }

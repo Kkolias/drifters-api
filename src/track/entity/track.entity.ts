@@ -1,16 +1,22 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm"
+import { RaceEvent } from 'src/race-event/entity/race-event.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class Track {
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    country: string;
+  @Column()
+  country: string;
 
-    // @Column()
-    // events: Event
+  @OneToMany(() => RaceEvent, (event) => event.track, {
+    eager: true,
+  })
+  raceEvents: RaceEvent[];
+
+  // @Column()
+  // events: Event
 }

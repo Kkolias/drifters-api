@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsNumber, IsOptional } from 'class-validator'
+import { IsString, IsNotEmpty, IsOptional, IsUUID } from 'class-validator'
 import { Driver } from 'src/driver/entity/driver.entity'
 export class CreateCarDto {
     @IsNotEmpty()
@@ -10,7 +10,7 @@ export class CreateCarDto {
     engine: string
 
     @IsNotEmpty()
-    @IsNumber()
+    @IsUUID()
     driverId: Driver
 
     @IsOptional()

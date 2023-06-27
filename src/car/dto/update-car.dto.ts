@@ -12,6 +12,10 @@ export class UpdateCarDto {
     engine: string
 
     @IsOptional()
+    @IsUUID()
+    driverId: string
+
+    @IsOptional()
     @IsString()
     yearActiveStart: number | null
 

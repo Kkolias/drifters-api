@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put, Query } from '@nestjs/common';
 import { CreateTrackDto } from './dto/create-track.dto';
 import { UpdateTrackDto } from './dto/update-track.dto';
 import { TrackService } from './track.service';
@@ -29,8 +29,8 @@ export class TrackController {
     return this.trackService.updateTrack(updateTrackDto);
   }
  
-  @Delete(':id')
-  async deleteTrack(@Param('id') id: string) {
+  @Delete('delete')
+  async deleteTrack(@Query('id') id: string) {
     return this.trackService.deleteTrack(id);
   }
 }

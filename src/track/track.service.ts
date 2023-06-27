@@ -20,6 +20,9 @@ export class TrackService {
   async getTrackById(id: string): Promise<ITrack> {
     const car = await this.trackRepository.findOne({
       where: { id },
+      relations: {
+        raceEvents: true
+      }
     });
     // const car = await this.trackRepository.findOneBy({ id: carId });
     if (car) {

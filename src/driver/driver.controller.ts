@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Patch, Post, Put, Query } from '@nestjs/common';
 import { CreateDriverDto } from './dto/create-driver.dto';
 import { UpdateDriverDto } from './dto/update-driver.dto';
 import { Driver } from './entity/driver.entity';
@@ -9,7 +9,7 @@ import { IDriver } from '../interfaces/driver';
 export class DriverController {
   constructor(private readonly driverService: DriverService) {}
 
-  @Get()
+  @Get('get-all')
   async getAllPeople(): Promise<Driver[]> {
     return this.driverService.getAllPeople();
   }
@@ -29,8 +29,8 @@ export class DriverController {
     return this.driverService.updateDriver(updateDriverDto);
   }
  
-  @Delete(':id')
-  async deleteDriver(@Param('id') id: string) {
+  @Delete('delete')
+  async deleteDriver(@Query('id') id: string) {
     return this.driverService.deleteDriver(id);
   }
 

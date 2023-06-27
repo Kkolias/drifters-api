@@ -7,6 +7,7 @@ import { AppDataSource } from 'ormconfig'
 import { DriverModule } from './driver/driver.module';
 import { CarModule } from './car/car.module';
 import { TrackModule } from './track/track.module';
+import { RaceEventModule } from './race-event/race-event.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { TrackModule } from './track/track.module';
     TypeOrmModule.forRoot(AppDataSource.options),
     DriverModule,
     CarModule,
-    TrackModule
+    TrackModule,
+    RaceEventModule
   ],
   controllers: [AppController],
   providers: [AppService],
